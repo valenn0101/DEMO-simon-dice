@@ -14,9 +14,7 @@ const botonDificil = document.getElementById("dificultad-dificil");
 let patronMaquina = [];
 let patronUsuario = [];
 
-document
-  .getElementById("iniciar-juego")
-  .addEventListener("click", comenzarJuego);
+document.getElementById("iniciar-juego").addEventListener("click", comenzarJuego);
 botonRojo.addEventListener("click", presionarBoton);
 botonVerde.addEventListener("click", presionarBoton);
 botonAzul.addEventListener("click", presionarBoton);
@@ -30,25 +28,28 @@ infoDificultad.onmouseout = function () {
 };
 
 function comenzarJuego() {
-  nuevoNivel();
-  document.getElementById("iniciar-juego").disabled = true;
+    nuevoNivel();
+    document.getElementById("iniciar-juego").disabled = true;
 }
 
-let mostrarPatron;
-
 function controlarDificultad(botonSeleccionado) {
+  const botonIniciar = document.getElementById("iniciar-juego" )
   if (botonSeleccionado === botonFacil) {
     botonDificil.disabled = true;
     mostrarPatron = true;
+    botonIniciar.disabled = false;
   } else if (botonSeleccionado === botonDificil) {
     document.getElementById("tablero-de-historial").classList.add("ocultar")
     botonFacil.disabled = true;
     mostrarPatron = false;
+    botonIniciar.disabled = false;
   }
 }
 
+let mostrarPatron = "";
 botonFacil.addEventListener("click", (e) => controlarDificultad(e.target));
 botonDificil.addEventListener("click", (e) => controlarDificultad(e.target));
+
 
 function nuevoNivel() {
   $estado.innerText = "Turno de la maquina!";
